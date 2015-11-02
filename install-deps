@@ -20,7 +20,7 @@ install_openblas() {
         echo "Error. OpenBLAS could not be compiled";
         exit $RET;
     fi
-    sudo make install
+    make install
     RET=$?; 
     if [ $RET -ne 0 ]; then
         echo "Error. OpenBLAS could not be installed";
@@ -130,9 +130,9 @@ elif [[ "$(uname)" == 'Linux' ]]; then
                       libqt4-dev libjpeg-dev libpng-dev ncurses-dev \
                       imagemagick libzmq3-dev gfortran unzip gnuplot \
                       gnuplot-x11 ipython )
-        sudo apt-get update
+        apt-get update
         # python-software-properties is required for apt-add-repository
-        sudo apt-get install -y python-software-properties 
+        apt-get install -y python-software-properties 
         if [[ $ubuntu_major_version == '14' ]]; then
             echo '==> Found Ubuntu version 14.xx, installing dependencies'
             sudo apt-get install -y software-properties-common \
@@ -152,7 +152,7 @@ elif [[ "$(uname)" == 'Linux' ]]; then
     elif [[ $distribution == 'archlinux' ]]; then
         echo "Archlinux installation"
         checkupdates_archlinux
-        sudo pacman -S --quiet --noconfirm --needed \
+        pacman -S --quiet --noconfirm --needed \
             cmake curl readline ncurses git \
             gnuplot unzip libjpeg-turbo libpng libpng \
             imagemagick graphicsmagick fftw sox zeromq \
@@ -163,7 +163,7 @@ elif [[ "$(uname)" == 'Linux' ]]; then
         else
             gcc_package="gcc-multilib"
         fi
-        sudo pacman -S --quiet --noconfirm --needed \
+        pacman -S --quiet --noconfirm --needed \
             ${gcc_package} gcc-fortran || exit 1
         # if openblas is not installed yet
         pacman -Qs openblas &> /dev/null
