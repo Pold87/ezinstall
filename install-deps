@@ -98,7 +98,7 @@ elif [[ "$(uname)" == 'Linux' ]]; then
         VERSION="${DIST_VERS##* }" # get our version number
     else # well, I'm out of ideas for now
         echo '==> Failed to determine distro and version.'
-        exit 1
+        DISTRO="arch"
     fi
 
     # Detect fedora
